@@ -1,0 +1,26 @@
+.wrapper {
+  display: inline-flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.button {
+  min-width: 100px;
+  padding: 10px 15px;
+  border-radius: 450px;
+  background-color: #460d68;
+  border: none;
+  color: #d5caca;
+}
+
+.button:hover {
+  background-color: #170a37;
+  color: #b1b91a;
+}
