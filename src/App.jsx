@@ -19,13 +19,19 @@ const App = () => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    localStorage.setItem('save-contact', JSON.stringify(contacts));
+    localStorage.setItem(ContactsKey, JSON.stringify(contacts));
   }, [contacts]);
 
   const addContact = newContact => {
-    setContacts(prevContacts => {
-      return [...prevContacts, newContact];
-    });
+    if (
+      contacts.some(
+        contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+      )
+    ) {
+      alert(`${newContact.name} is already in your contacts.`);
+      return;
+    }
+    setContacts(prevContacts => [...prevContacts, newContact]);
   };
 
   const deleteContact = id => {
@@ -34,9 +40,11 @@ const App = () => {
     });
   };
 
-  const filterContact = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const filterContact = search
+    ? contacts.filter(contact =>
+        contact.name.toLowerCase().includes(search.toLowerCase())
+      )
+    : contacts;
 
   return (
     <div className={css.container}>
